@@ -1,0 +1,4 @@
+symbolPreset: unicode
+setupVersion: 3
+modelRoles:
+  default: anthropic/claude-opus-5-5:high

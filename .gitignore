@@ -1,0 +1,29 @@
+# Allowlist: ignore everything, then re-include known config.
+# Never add: agent.db (credentials), *.db, sessions/, cache/, mcp.json, models.yml.
+/*
+!/.gitignore
+!/.githooks/
+!/README.md
+!/OMP_VERSION
+!/install.sh
+!/snapshot.sh
+!/config.yml
+!/keybindings.yml
+!/RULES.md
+!/AGENTS.md
+!/SYSTEM.md
+!/APPEND_SYSTEM.md
+!/TITLE_SYSTEM.md
+!/rules/
+!/skills/
+!/commands/
+!/prompts/
+!/hooks/
+!/extensions/
+# tools/: source files and tool subfolders only (excludes binaries such as tools/yt-dlp)
+!/tools/
+/tools/*
+!/tools/*.ts
+!/tools/*.js
+!/tools/*.md
+!/tools/*/

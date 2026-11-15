@@ -1,0 +1,14 @@
+#!/bin/sh
+# Block commits whose staged additions look like credentials.
+pat='sk-ant-[A-Za-z0-9_-]{10,}|(^|[^A-Za-z0-9])sk-[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|xox[abprs]-[A-Za-z0-9-]{10,}|-----BEGIN [A-Z ]*PRIVATE KEY-----|(api[_-]?key|apikey|token|secret|password)["'\'' ]*[:=][ ]*["'\'']?[A-Za-z0-9_./+=-]{16,}'
+hits=""
+for f in $(git diff --cached --name-only --diff-filter=ACMR -- . ':!.githooks/'); do
+  if git diff --cached -U0 --no-color -- "$f" | grep '^+' | grep -Eiq -- "$pat"; then
+    hits="$hits $f"
+  fi
+done
+if [ -n "$hits" ]; then
+  echo "pre-commit: possible credential in:$hits" >&2
+  echo "Remove it (use 'omp login' or env vars instead), or bypass knowingly with --no-verify." >&2
+  exit 1
+fi

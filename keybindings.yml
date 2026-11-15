@@ -1,0 +1,11 @@
+# Remaps to avoid AeroSpace's Alt chords (alt-m/p/o/h/n/r/l/k, alt-shift-h/j/k/l).
+app.model.select: Alt+Shift+M
+app.model.selectTemporary: Alt+Shift+O
+app.links.hint: Alt+Shift+I
+app.ask.hide: Alt+Shift+E
+app.ask.note: N
+app.retry: F5
+app.display.reset: Alt+Shift+R
+app.session.pin: Alt+Shift+U
+app.session.unpin: Alt+Shift+Y
+app.clipboard.copyLine: Alt+Shift+X
