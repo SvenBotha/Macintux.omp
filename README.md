@@ -10,8 +10,9 @@ A pre-commit hook (`.githooks/pre-commit`, enabled by `install.sh`) blocks commi
     omp login
 or, from a Macintux.dotfiles clone: `terminal/modules/omp/install.sh`.
 Existing files that the repo would overwrite are backed up to `~/.omp/agent.bak-<timestamp>/`.
+`install.sh` installs the newest omp and the newest [OpenSpec](https://github.com/Fission-AI/OpenSpec) CLI (standalone binary in `~/.local/bin`, needed by `/idea-spec` and `/idea-handoff`). Nothing is pinned: re-run it to update both.
 
 ## Tracking changes
-    ~/.omp/agent/snapshot.sh      # writes current omp version to OMP_VERSION, shows git status
+    git -C ~/.omp/agent status --short                # see uncommitted config changes
     git -C ~/.omp/agent switch -c <type>/<summary>   # never commit on main
     git -C ~/.omp/agent add -A && git -C ~/.omp/agent commit -m "..." && git -C ~/.omp/agent push -u origin HEAD
