@@ -1,5 +1,5 @@
 #!/bin/sh
-# Restore omp config into the agent dir and install the pinned omp version.
+# Restore omp config into the agent dir and install the pinned omp and OpenSpec versions.
 # Usage: curl -fsSL https://raw.githubusercontent.com/SvenBotha/Macintux.omp/main/install.sh | sh
 set -eu
 REPO_URL="https://github.com/SvenBotha/Macintux.omp.git"
@@ -30,5 +30,14 @@ if [ "$HAVE" != "$WANT" ]; then
   curl -fsSL https://omp.sh/install | sh -s -- --binary --ref "v$WANT"
 else
   echo "omp $WANT already installed"
+fi
+
+# OpenSpec CLI, used by the /idea-spec and /idea-handoff commands. Standalone binary, no Node.js; installs to ~/.local/bin.
+WANT_OS="$(cat "$AGENT_DIR/OPENSPEC_VERSION")"
+HAVE_OS="$(openspec --version 2>/dev/null || true)"
+if [ "$HAVE_OS" != "$WANT_OS" ]; then
+  curl -fsSL "https://raw.githubusercontent.com/Fission-AI/OpenSpec/v$WANT_OS/scripts/binary/install.sh" | OPENSPEC_VERSION="v$WANT_OS" sh
+else
+  echo "openspec $WANT_OS already installed"
 fi
 echo "Credentials are not in the repo: run 'omp login' (or set provider API keys)."
