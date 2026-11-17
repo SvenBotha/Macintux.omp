@@ -4,10 +4,7 @@
 !/.gitignore
 !/.githooks/
 !/README.md
-!/OMP_VERSION
-!/OPENSPEC_VERSION
 !/install.sh
-!/snapshot.sh
 !/config.yml
 !/keybindings.yml
 !/RULES.md
